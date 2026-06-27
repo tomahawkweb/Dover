@@ -22,7 +22,10 @@
 
   function applyBrand() {
     document.querySelectorAll("[data-brand-text]").forEach((el) => (el.textContent = BRAND.name));
-    document.querySelectorAll("[data-brand-short]").forEach((el) => (el.textContent = BRAND.short));
+    document.querySelectorAll("[data-brand-short]").forEach((el) => {
+      if (el instanceof HTMLImageElement) el.alt = BRAND.name;
+      else el.textContent = BRAND.short;
+    });
 
     const taglineEl = document.querySelector("[data-brand-tagline]");
     if (taglineEl) taglineEl.textContent = BRAND.tagline;
